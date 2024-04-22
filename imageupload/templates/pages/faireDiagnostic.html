@@ -1,0 +1,300 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v5.9.13, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, mobirise.com">
+  <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image:src" content="{% static 'image/faireDiagnostic-meta.jpg' %}">
+  <meta property="og:image" content="{% static 'image/faireDiagnostic-meta.jpg' %}">
+  <meta name="twitter:title" content="faireDiagnostic">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="{% static 'image/biosafepng.png' %}" type="image/x-icon">
+  <meta name="description" content="faire une analyse de la plante">
+  
+  
+  <title>faireDiagnostic</title>
+  <link rel="stylesheet" href="{% static 'css/mobirise2.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mobirise-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/camera.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sociconstyles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="{% static 'css/mbr-additional.css' %}?v=oabj66"><link rel="stylesheet" href="{% static 'css/mbr-additional.css' %}?v=oabj66" type="text/css">
+
+  
+  
+  
+</head>
+<body>
+  
+    <section data-bs-version="5.1" class="menu menu5 cid-ua7Nea9zPw" once="menu" id="menu05-5">
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="#">
+                            <img src="{% static 'image/biosafepng.png' %}" alt="logo" style="height: 5rem;">
+                        </a>
+                    </span>
+                    
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="#">A Propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="#" aria-expanded="false">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="#">Contacts</a>
+                        </li></ul>
+                    <div class="navbar-buttons mbr-section-btn"></div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    
+    <section data-bs-version="5.1" class="article16 cid-uat6rbQxbP" id="article16-1u" style="top: 5rem;">
+    <div>
+       <center><h1>Récuperer votre et faite la analyser</h1></center>
+    </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="mbr-section-btn align-center">
+                       <input type="file" accept=".jpg,.png" name="imagePlante" id="imagePlante" onchange="displaySelectedImage(event)" hidden>
+                        <label for="imagePlante"><span class="btn btn-primary display-4"><span class="mbri-image-gallery mbr-iconfont mbr-iconfont-btn"></span> Galerie</span></label>
+
+                        <!--<a class="btn btn-primary-outline display-4" href=""><span class="mobi-mbri mobi-mbri-camera mbr-iconfont mbr-iconfont-btn"></span>Camera</a> --></div>
+                </div>
+            </div>
+            <center>
+                <div class="contentarea">
+                <div class="camera">
+                  <video id="video">Le flux vidéo n'est pas disponible.</video>
+                  <button id="startbutton">Prendre une photo</button>
+                </div>
+                <canvas id="canvas"> </canvas>
+                    <canvas id="galleryCanvas" style="display: none;"></canvas>
+                <div class="output">
+                  <img id="photo" alt="L'image capturée apparaîtra ici." />
+                </div>
+                 <form method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                    <input type="hidden" id="image_data_input" name="image_data" value="">
+                     <button class="btn btn-primary display-4" style="display: inline;" type="submit">Soumettre</button>
+                 </form>
+              </div> <!--prendre une photo--></center>
+            
+
+        </div>
+    </section>
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/smooth-scroll.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/navbar-dropdown.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+  
+<script>
+
+     function displaySelectedImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function() {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.getElementById('galleryCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Clear the existing canvas content
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const width = 320; // Set a fixed width for the canvas
+        const height = img.height * (width / img.width); // Calculate height based on aspect ratio
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Hide the video and show the gallery canvas
+        video.style.display = 'none';
+        canvas.style.display = 'none';
+        galleryCanvas.style.display = 'block';
+        const image_data = galleryCanvas.toDataURL("image/png");
+        const image_data_input = document.getElementById('image_data_input');
+            image_data_input.value = image_data;
+
+      }
+      img.src = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
+    (() => {
+        // La largeur et la hauteur de la photo capturée. On utilisera
+        // une largeur fixe et on calculera la hauteur pour correspondre
+        // aux proportions du flux vidéo d'entrée.
+      
+        const width = 320; // On met à l'échelle la photo pour avoir cette largeur
+        let height = 0; // On calcule cette valeur ensuite selon le flux d'entrée
+      
+        // |streaming| indique si le flux vidéo est en cours
+        // Lorsqu'on commence, ce n'est pas le cas (false).
+      
+        let streaming = false;
+      
+        // On référence les éléments HTML qu'il faudra configurer ou contrôler.
+        // Ils seront définis lors de la fonction startup().
+      
+        let video = null;
+        let canvas = null;
+        let photo = null;
+        let startbutton = null;
+      
+        function showViewLiveResultButton() {
+          if (window.self !== window.top) {
+            // On s'assure que si notre document est dans une iframe,
+            // on invite la personne à ouvrir l'exemple dans un onglet
+            // ou une fenêtre séparée. Sinon, le navigateur n'envoie
+            // pas la demande d'accès à la caméra.
+            document.querySelector(".contentarea").remove();
+            const button = document.createElement("button");
+            button.textContent =
+              "Voir le résultat de l'exemple dont le code est présenté avant";
+            document.body.append(button);
+            button.addEventListener("click", () => window.open(location.href));
+            return true;
+          }
+          return false;
+        }
+
+
+      
+        function startup() {
+          if (showViewLiveResultButton()) {
+            return;
+          }
+          video = document.getElementById("video");
+          canvas = document.getElementById("canvas");
+          photo = document.getElementById("photo");
+          startbutton = document.getElementById("startbutton");
+      
+          navigator.mediaDevices
+            .getUserMedia({ video: true, audio: false })
+            .then((stream) => {
+              video.srcObject = stream;
+              video.play();
+            })
+            .catch((err) => {
+              console.error(`Une erreur est survenue : ${err}`);
+            });
+      
+          video.addEventListener(
+            "canplay",
+            (ev) => {
+              if (!streaming) {
+                height = video.videoHeight / (video.videoWidth / width);
+      
+                // Firefox a un bug où la hauteur ne peut pas être lue
+                // à partir de la vidéo. On prend des précautions.
+      
+                if (isNaN(height)) {
+                  height = width / (4 / 3);
+                }
+      
+                video.setAttribute("width", width);
+                video.setAttribute("height", height);
+                canvas.setAttribute("width", width);
+                canvas.setAttribute("height", height);
+                streaming = true;
+              }
+            },
+            false,
+          );
+      
+          startbutton.addEventListener(
+            "click",
+            (ev) => {
+              takepicture();
+              ev.preventDefault();
+            },
+            false,
+          );
+      
+          clearphoto();
+        }
+      
+        // On remplit le cadre de la photo pour indiquer l'absence
+        // d'image capturée.
+      
+        function clearphoto() {
+          const context = canvas.getContext("2d");
+          context.fillStyle = "#AAA";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+
+          const data = canvas.toDataURL("image/png");
+          photo.setAttribute("src", data);
+        }
+      
+        // On capture une photo en récupérant le contenu courant de la
+        // vidéo, qu'on dessine dans un canevas puis qu'on convertit
+        // en une URL de données contenant l'image au format PNG.
+        // En utilisant un canevas en dehors de l'écran, on peut
+        // modifier sa taille et/ou appliquer d'autres modifications
+        // avant de l'afficher à l'écran.
+      
+        function takepicture() {
+          const context = canvas.getContext("2d");
+          if (width && height) {
+            canvas.width = width;
+            canvas.height = height;
+            context.drawImage(video, 0, 0, width, height);
+      
+            const image_data = canvas.toDataURL("image/png");
+            const data = canvas.toDataURL("image/png");
+            const image_data_input = document.getElementById('image_data_input');
+            image_data_input.value = image_data;
+
+            photo.setAttribute("src", data);
+          } else {
+            clearphoto();
+          }
+        }
+      
+        // On met en place un gestionnaire d'évènement pour exécuter
+        // le code lorsque le chargement du document est terminé.
+        window.addEventListener("load", startup, false);
+      })();
+      
+  </script>
+  
+  <input name="animation" type="hidden">
+  </body>
+</html>
